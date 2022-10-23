@@ -1,5 +1,5 @@
 {
-  "name": "my-project",
+  "name": "npx-backend",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -11,16 +11,16 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.3.9",
-    "@strapi/plugin-users-permissions": "4.3.9",
-    "@strapi/plugin-i18n": "4.3.9",
+    "@strapi/strapi": "4.4.5",
+    "@strapi/plugin-users-permissions": "4.4.5",
+    "@strapi/plugin-i18n": "4.4.5",
     "better-sqlite3": "7.4.6"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "0fe68b94-9cf7-4ff2-a16b-3e09ced8497d"
+    "uuid": "9366cc41-3b62-4acd-b673-5388a9fd0498"
   },
   "engines": {
     "node": ">=14.19.1 <=18.x.x",
