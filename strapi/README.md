@@ -1,5 +1,17 @@
 # Strapi
 
+## How to use demo
+
+```sh
+(cd glen-frontend && npm start)
+(cd npx-backend && npm run develop)
+```
+
+### Manual Strapi Steps
+
+- 'Content Manager' > 'law-soc': fill out the fields 'title' and 'subtitle'
+- 'Settings' > 'Roles' > 'public' > 'law-soc': check the 'find' permission
+
 ## Key observations 
 
 - API is easy to access
