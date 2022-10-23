@@ -14,8 +14,8 @@
 - 'Settings' > 'Internationalization': click 'Add new locale' and
   add the 'Bengali (Bangladesh) (bn-BD)' locale.
 - 'Content Manager' > 'law-soc': select the bn-BD from 'Locales' and
-  fill out the 'title' field. Observe that 'subtitle' is missing from the
-  frontend
+  fill out the fields 'title'. Leave 'subtitle' unfilled to see the fallback
+  from the default locale.
 
 ## Key observations 
 

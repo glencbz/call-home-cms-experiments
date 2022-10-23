@@ -20,20 +20,35 @@ interface StrapiModelResponse<T> {
   }
 }
 
+// Let's be real, the response can have missing fields.
 interface LawSocView {
-    title: string;
-    subtitle: string;
+  title: string | null;
+  subtitle: string | null;
+}
+
+// Missing data in Strapi is returned as null.
+type NonNullProps<T> = {[key in keyof T]: NonNullable<T[key]>;};
+
+function dropNulls<T>(partial: T): Partial<NonNullProps<T>> {
+  const filtered = Array.from(Object.entries(partial))
+    .filter(([, val]) => val !== null);
+  // Too lazy to figure this out.
+  return Object.fromEntries(filtered) as any;
 }
 
 function App() {
   const [title, setTitle] = useState('Placeholder');
   const [subtitle, setSubtitle] = useState('Also a placeholder');
 
-  function updateState(data: LawSocView) {
+  function updateState(defaultData: NonNullProps<LawSocView>, localizedData?: LawSocView) {
+    const overlaidData = {
+      ...defaultData,
+      ...(localizedData ? dropNulls(localizedData) : {}),
+    };
     const {
       title: newTitle,
       subtitle: newSubtitle
-    } = data;
+    } = overlaidData;
 
     setTitle(newTitle);
     setSubtitle(newSubtitle);
@@ -41,16 +56,23 @@ function App() {
 
   const getDefaultBackendData = useCallback(async () => {
     const response = await axios
-      .get<StrapiModelResponse<LawSocView>>(API_ROOT + ROUTES.LAW_SOC);
+      .get<StrapiModelResponse<NonNullProps<LawSocView>>>(API_ROOT + ROUTES.LAW_SOC);
     updateState(response.data.data.attributes);
   }, []);
 
   const getBanglaBackendData = useCallback(async () => {
-    const response = await axios
+    const defaultPromise = axios
+      .get<StrapiModelResponse<NonNullProps<LawSocView>>>(API_ROOT + ROUTES.LAW_SOC);
+    const banglaPromise = axios
       .get<StrapiModelResponse<LawSocView>>(
         API_ROOT + ROUTES.LAW_SOC,
-        { params: { locale: LOCALES.BANGLA } });
-    updateState(response.data.data.attributes);
+        { params: { locale: LOCALES.BANGLA } }
+    );
+    const [defaultResponse, banglaResponse] = await Promise.all([defaultPromise, banglaPromise])
+    updateState(
+      defaultResponse.data.data.attributes,
+      banglaResponse.data.data.attributes
+    );
   }, []);
 
   return (
