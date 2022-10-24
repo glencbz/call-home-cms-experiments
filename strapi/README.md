@@ -16,6 +16,8 @@
 - 'Content Manager' > 'law-soc': select the bn-BD from 'Locales' and
   fill out the fields 'title'. Leave 'subtitle' unfilled to see the fallback
   from the default locale.
+- 'Media library': click on 'Add new assets' and upload your favourite image.
+- 'Content Manager' > 'law-soc': Add your new media as the 'logo'.
 
 ## Key observations 
 
