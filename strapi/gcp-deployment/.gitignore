@@ -113,3 +113,10 @@ exports
 dist
 build
 .strapi-updater.json
+
+############################
+# Google Cloud
+############################
+
+app.yaml
+
