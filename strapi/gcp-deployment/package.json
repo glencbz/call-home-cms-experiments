@@ -1,0 +1,36 @@
+{
+  "name": "call-home-strapi",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "gcp-build": "strapi build",
+    "app-deploy": "gcloud app deploy app.yaml --project=ch-test-strapi --bucket=gs://ch-test-strapi-app-bucket",
+    "terraform-deploy-init": "terraform apply -var-file=\"secret.tfvars\" -target=google_storage_bucket.terraform_state",
+    "terraform-deploy": "terraform apply -var-file=\"secret.tfvars\""
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/plugin-i18n": "4.4.7",
+    "@strapi/plugin-users-permissions": "4.4.7",
+    "@strapi/strapi": "4.4.7",
+    "better-sqlite3": "7.4.6",
+    "pg": "^8.8.0",
+    "strapi-provider-upload-google-cloud-storage": "^4.0.0"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "dda02f13-dce0-47da-94d1-5ddb04b0b827"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
